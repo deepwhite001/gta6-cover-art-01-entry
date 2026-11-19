@@ -3,20 +3,93 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Cover Snap</title>
+<title>Neon Coast — Cover Studio</title>
 <link rel="stylesheet" href="./style.css">
 </head>
 <body>
-<main class="app">
-  <section class="controls">
-    <h1>Cover Snap</h1>
-    <p>A photo and a caption, made into a square cover.</p>
-    <label>Photo <input id="photo" type="file" accept="image/*"></label>
-    <label>Caption <input id="caption" type="text" maxlength="40" value="Sunset Heist"></label>
-    <button id="export" type="button">Export PNG 1080 x 1080</button>
+<main class="studio">
+  <section class="panel" aria-label="Cover controls">
+    <h1>Neon Coast</h1>
+    <p class="lede">Your photo, cut into panels under a painted sunset, with a big title on top. Pick a look, then take the PNG.</p>
+
+    <fieldset>
+      <legend>Photos</legend>
+      <label class="file">Photo A — the hero shot
+        <input id="photo-a" type="file" accept="image/*">
+      </label>
+      <div class="samples">
+        <button id="sample-a-pier" type="button">Use pier sample</button>
+        <button id="sample-a-boulevard" type="button">Use boulevard sample</button>
+      </div>
+      <label class="file">Photo B — the second panel (optional)
+        <input id="photo-b" type="file" accept="image/*">
+      </label>
+      <div class="samples">
+        <button id="sample-b-pier" type="button">Use pier sample</button>
+        <button id="sample-b-boulevard" type="button">Use boulevard sample</button>
+      </div>
+      <p class="hint">One photo fills every panel; add a second and it takes the smaller ones. No photo leaves a placeholder — upload yours to see the real thing.</p>
+    </fieldset>
+
+    <fieldset>
+      <legend>Words</legend>
+      <label>Title
+        <input id="title" type="text" maxlength="28" value="Neon Heat">
+      </label>
+      <label>Tagline
+        <input id="tagline" type="text" maxlength="40" value="Sunset Run">
+      </label>
+    </fieldset>
+
+    <fieldset>
+      <legend>Look</legend>
+      <div class="choices" role="group" aria-label="Panel layout">
+        <label><input type="radio" name="layout" value="poster" checked> Poster</label>
+        <label><input type="radio" name="layout" value="grid"> Four panels</label>
+        <label><input type="radio" name="layout" value="strip"> Three strips</label>
+      </div>
+      <div class="choices" role="group" aria-label="Colour palette">
+        <label><input type="radio" name="palette" value="sunset" checked> Sunset</label>
+        <label><input type="radio" name="palette" value="neon"> Neon night</label>
+        <label><input type="radio" name="palette" value="dawn"> Teal dawn</label>
+      </div>
+      <label>Post size
+        <select id="size">
+          <option value="square" selected>Square — 1080 x 1080</option>
+          <option value="portrait">Portrait — 1080 x 1350</option>
+          <option value="wide">Wide — 1920 x 1080</option>
+        </select>
+      </label>
+    </fieldset>
+
+    <fieldset>
+      <legend>Crop each photo</legend>
+      <label>Photo A zoom
+        <input id="zoom-a" type="range" min="1" max="2.5" step="0.05" value="1">
+        <span id="zoom-a-value">Zoom 1.00x</span>
+      </label>
+      <label>Photo A pan
+        <input id="pan-a" type="range" min="-1" max="1" step="0.05" value="0">
+        <span id="pan-a-value">Pan 0.00</span>
+      </label>
+      <label>Photo B zoom
+        <input id="zoom-b" type="range" min="1" max="2.5" step="0.05" value="1">
+        <span id="zoom-b-value">Zoom 1.00x</span>
+      </label>
+      <label>Photo B pan
+        <input id="pan-b" type="range" min="-1" max="1" step="0.05" value="0">
+        <span id="pan-b-value">Pan 0.00</span>
+      </label>
+    </fieldset>
+
+    <button id="export" type="button">Download the cover PNG</button>
+    <p id="size-note" role="status"></p>
     <p id="status" role="status"></p>
   </section>
-  <canvas id="cover" width="1080" height="1080" aria-label="The cover"></canvas>
+
+  <section class="preview" aria-label="Cover preview">
+    <canvas id="cover" width="1080" height="1080"></canvas>
+  </section>
 </main>
 <script type="module" src="./src/main.js"></script>
 </body>
