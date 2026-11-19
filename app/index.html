@@ -8,27 +8,27 @@
 </head>
 <body>
 <main class="studio">
-  <section class="panel" aria-label="Cover controls">
+  <section class="controls" aria-label="Cover controls">
     <h1>Neon Coast</h1>
-    <p class="lede">Your photo, cut into panels under a painted sunset, with a big title on top. Pick a look, then take the PNG.</p>
+    <p class="intro">Two photos, a painted Vice City dusk, one big title. Set the look, then take the PNG home.</p>
 
     <fieldset>
       <legend>Photos</legend>
-      <label class="file">Photo A — the hero shot
-        <input id="photo-a" type="file" accept="image/*">
+      <label class="upload">First photo — the hero
+        <input id="slot-a-file" type="file" accept="image/*">
       </label>
-      <div class="samples">
-        <button id="sample-a-pier" type="button">Use pier sample</button>
-        <button id="sample-a-boulevard" type="button">Use boulevard sample</button>
+      <div class="sample-row">
+        <button id="slot-a-pier" type="button">Pier sample</button>
+        <button id="slot-a-boulevard" type="button">Boulevard sample</button>
       </div>
-      <label class="file">Photo B — the second panel (optional)
-        <input id="photo-b" type="file" accept="image/*">
+      <label class="upload">Second photo — fills the extra panels
+        <input id="slot-b-file" type="file" accept="image/*">
       </label>
-      <div class="samples">
-        <button id="sample-b-pier" type="button">Use pier sample</button>
-        <button id="sample-b-boulevard" type="button">Use boulevard sample</button>
+      <div class="sample-row">
+        <button id="slot-b-pier" type="button">Pier sample</button>
+        <button id="slot-b-boulevard" type="button">Boulevard sample</button>
       </div>
-      <p class="hint">One photo fills every panel; add a second and it takes the smaller ones. No photo leaves a placeholder — upload yours to see the real thing.</p>
+      <p class="tip">One photo covers every panel on its own. Add a second and the layouts mix the two. Your files stay on your machine — nothing is uploaded.</p>
     </fieldset>
 
     <fieldset>
@@ -43,15 +43,15 @@
 
     <fieldset>
       <legend>Look</legend>
-      <div class="choices" role="group" aria-label="Panel layout">
+      <div class="pick" role="group" aria-label="Panel layout">
         <label><input type="radio" name="layout" value="poster" checked> Poster</label>
         <label><input type="radio" name="layout" value="grid"> Four panels</label>
         <label><input type="radio" name="layout" value="strip"> Three strips</label>
       </div>
-      <div class="choices" role="group" aria-label="Colour palette">
-        <label><input type="radio" name="palette" value="sunset" checked> Sunset</label>
-        <label><input type="radio" name="palette" value="neon"> Neon night</label>
-        <label><input type="radio" name="palette" value="dawn"> Teal dawn</label>
+      <div class="pick" role="group" aria-label="Colour grade">
+        <label><input type="radio" name="tone" value="sunset" checked> Sunset</label>
+        <label><input type="radio" name="tone" value="neon"> Neon night</label>
+        <label><input type="radio" name="tone" value="dawn"> Teal dawn</label>
       </div>
       <label>Post size
         <select id="size">
@@ -63,31 +63,42 @@
     </fieldset>
 
     <fieldset>
-      <legend>Crop each photo</legend>
-      <label>Photo A zoom
+      <legend>Frame each photo</legend>
+      <label>First photo zoom
         <input id="zoom-a" type="range" min="1" max="2.5" step="0.05" value="1">
         <span id="zoom-a-value">Zoom 1.00x</span>
       </label>
-      <label>Photo A pan
-        <input id="pan-a" type="range" min="-1" max="1" step="0.05" value="0">
-        <span id="pan-a-value">Pan 0.00</span>
+      <label>First photo sideways
+        <input id="panx-a" type="range" min="-1" max="1" step="0.05" value="0">
+        <span id="panx-a-value">Pan 0.00</span>
       </label>
-      <label>Photo B zoom
+      <label>First photo up and down
+        <input id="pany-a" type="range" min="-1" max="1" step="0.05" value="0">
+        <span id="pany-a-value">Lift 0.00</span>
+      </label>
+      <label>Second photo zoom
         <input id="zoom-b" type="range" min="1" max="2.5" step="0.05" value="1">
         <span id="zoom-b-value">Zoom 1.00x</span>
       </label>
-      <label>Photo B pan
-        <input id="pan-b" type="range" min="-1" max="1" step="0.05" value="0">
-        <span id="pan-b-value">Pan 0.00</span>
+      <label>Second photo sideways
+        <input id="panx-b" type="range" min="-1" max="1" step="0.05" value="0">
+        <span id="panx-b-value">Pan 0.00</span>
+      </label>
+      <label>Second photo up and down
+        <input id="pany-b" type="range" min="-1" max="1" step="0.05" value="0">
+        <span id="pany-b-value">Lift 0.00</span>
       </label>
     </fieldset>
 
-    <button id="export" type="button">Download the cover PNG</button>
+    <div class="actions">
+      <button id="export" type="button">Download the cover PNG</button>
+      <button id="clear" type="button">Clear photos</button>
+    </div>
     <p id="size-note" role="status"></p>
     <p id="status" role="status"></p>
   </section>
 
-  <section class="preview" aria-label="Cover preview">
+  <section class="stage" aria-label="Cover preview">
     <canvas id="cover" width="1080" height="1080"></canvas>
   </section>
 </main>
