@@ -198,10 +198,14 @@ function panelRects(layout, w, h) {
     ];
   }
   if (layout === 'strip') {
-    const ph = (bandTop - h * 0.07 - gap * 2) / 3;
+    // The strips start below the sun's disc: the disc's bottom edge sits
+    // near 0.25 of the height, so at 0.27 the whole sun shows above the
+    // first strip instead of hiding behind it.
+    const top = h * 0.27;
+    const ph = (bandTop - top - gap * 2) / 3;
     return [0, 1, 2].map((i) => ({
       x: m,
-      y: h * 0.07 + i * (ph + gap),
+      y: top + i * (ph + gap),
       w: w - m * 2,
       h: ph,
     }));
